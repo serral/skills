@@ -4,6 +4,7 @@ description: Creates and configures NestJS modules, controllers, services, DTOs,
 license: MIT
 metadata:
   author: https://github.com/Jeffallan
+  company: https://synergetic.solutions
   version: "1.1.0"
   domain: backend
   triggers: NestJS, Nest, Node.js backend, TypeScript backend, dependency injection, controller, service, module, guard, interceptor
@@ -53,7 +54,7 @@ export class CreateUserDto {
   @IsEmail()
   email: string;
 
-  @ApiProperty({ example: 'strongPassword123', minLength: 8 })
+  @ApiProperty({ example: '<password>', minLength: 8 })
   @IsString()
   @MinLength(8)
   password: string;
@@ -167,7 +168,7 @@ describe('UsersService', () => {
   it('throws ConflictException when email already exists', async () => {
     mockRepo.findOneBy.mockResolvedValue({ id: 1, email: 'user@example.com' });
     await expect(
-      service.create({ email: 'user@example.com', password: 'pass1234' }),
+      service.create({ email: 'user@example.com', password: '<test-password>' }),
     ).rejects.toThrow(ConflictException);
   });
 });
@@ -204,5 +205,7 @@ When implementing a NestJS feature, provide in this order:
 ## Knowledge Reference
 
 NestJS, TypeScript, TypeORM, Prisma, Passport, JWT, class-validator, class-transformer, Swagger/OpenAPI, Jest, Supertest, Guards, Interceptors, Pipes, Filters
+
+Maintained by [@jeffallan](https://github.com/jeffallan), Principal Consultant at [Synergetic Solutions](https://synergetic.solutions)
 
 [Documentation](https://jeffallan.github.io/claude-skills/skills/backend/nestjs-expert/)
